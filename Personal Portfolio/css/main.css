@@ -1,0 +1,840 @@
+/* 
+Based on feedback, I made specific changes to the media queries to make the website
+more responsive and user-friendly. 
+When you make the screen smaller, it will now adjust dynamically to fit the screen 
+size either by changing the layout or the font size.
+
+I also made changes to the Home Page, About Page, Project Page, and Contact Page 
+to make the light theme in order to allow for the darkmode theme to be vibrant and colorful.
+
+Changes made to the nav and footer: 
+1. Made the nav bar blue to match the theme of the website.
+2. Made the 'Download CV' button a colorful gradient that I made and made the colors 
+flip when hovered over.
+3. Made the 'Download CV' button bounce when the page is loaded and every 1 minute.
+4. Added a dark mode toggle button that changes the theme of the website to a dark mode 
+when clicked. The button has a sun and moon icon that
+5. Changed the logo to a transparent one in order to account for light and dark mode.
+
+Changes made to the Home Page:
+1. Created a background image using https://superdesigner.co/ to
+allow for most the page to be white but with a blue blob on the left hand side.
+2. Changed the text color to black and moved it to the right to make it more readable.
+
+Changes made to the About Page:
+1. Mostly fixed the media queries because the text was going all over before
+2. Changed colors to match the website better
+
+Changes made to the Project Page:
+1. Fixed the media queries to make the page actually responsive
+
+Changes made to the Contact Page:
+1. Made it so the submit button actually allows you to submit the form
+
+*/
+
+/* Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+:root {
+  --primary-color: #b055cb;
+  --secondary-color: #30475e;
+  --form-background-color: #f4f4f4;
+  --button-hover-color: #9632b4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: "Lato", sans-serif;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--secondary-color);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#logo-icon {
+  margin: 5px;
+  padding: 5px;
+}
+
+nav {
+  background: var(--secondary-color);
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.nav-bar-custom {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 100px;
+  padding-right: 100px;
+}
+
+.nav-bar-custom li a {
+  padding: 5px;
+  margin: 10px;
+  font-size: 17px;
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.nav-bar-custom li a:hover,
+.nav-bar-custom li a.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburger span {
+  display: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.footer-container {
+  background: transparent;
+  color: #d9d9d9;
+  padding: 20px;
+  margin-top: auto;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  gap: 20px;
+}
+
+.social-media-container ul {
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+  flex-direction: row;
+  padding: 0;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+}
+
+.social-media-container ul svg {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.social-media-container ul li a {
+  color: #d9d9d9;
+  text-decoration: none;
+}
+
+.social-media-container ul li a:hover {
+  color: var(--primary-color);
+}
+
+/* Download Button */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.download-btn {
+  width: 160px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  margin: 20px;
+  padding: 5px 10px;
+  height: 45px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  animation-name: bounce;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.bouncing {
+  animation: bounce 2s ease forwards;
+}
+
+.download-btn:hover {
+  background-position: 100% 0;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.download-btn:focus {
+  outline: none;
+}
+
+.download-btn.btn-color {
+  background-image: linear-gradient(
+    to left,
+    #667eea,
+    #764ba2,
+    #6b8dd6,
+    #8e37d7
+  );
+  box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+#dark-mode-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin: 50px;
+}
+
+.checkbox {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Sun icon*/
+.checkbox + label::before {
+  content: "☀️";
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+/* Moon icon */
+.checkbox + label::after {
+  content: "🌜";
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+.slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.checkbox + label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  border-radius: 50px;
+}
+
+.checkbox:checked + label .slider {
+  transform: translateX(26px);
+  background-color: black;
+}
+
+.checkbox:checked + label {
+  background-color: #666;
+}
+
+#name-cc {
+  margin-left: 200px;
+}
+
+/* Home Styles */
+#home .main-container {
+  background-image: url("../images/side-wave_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 50px;
+  padding-top: 100px;
+  margin: 0;
+}
+
+#home .main-container p {
+  font-size: 4em;
+  color: black;
+  margin: 0 0 20px;
+}
+
+#home #main_name,
+#home #main-container-second-line {
+  font-size: 1.45em;
+  color: var(--primary-color);
+  margin: 0 0 20px;
+}
+
+#home #main-container-second-line {
+  font-size: 2.5em;
+}
+
+/* About Styles */
+#about .main-container {
+  background: black;
+  /* margin-top: 80px; */
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 200px;
+  padding: 50px;
+  color: white;
+}
+
+#about .main-container p,
+.video-container p {
+  font-size: 25px;
+  margin: 20px;
+}
+
+#about .main-container h3,
+.video-container h3 {
+  font-size: 30px;
+  border-bottom: 2px solid white;
+}
+
+#about #profile-pic {
+  border-radius: 2%;
+  width: 500px;
+  height: 500px;
+  margin-left: 60px;
+}
+
+#projects .project-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 40px;
+  padding: 90px;
+  background-color: white;
+  margin-top: 20px;
+  display: flex;
+}
+
+#projects .project-item {
+  background: #fff;
+  border: 3px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#projects .project-item:hover {
+  transform: translateY(-10px);
+}
+
+#projects .project-item img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+#projects .project-item p {
+  padding: 10px;
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#projects .project-item a {
+  display: inline-block;
+  background: var(--secondary-color);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  margin: 15px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+}
+
+#projects .project-item a:hover {
+  background-color: #30475ed1;
+}
+
+#projects figcaption {
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  padding: 15px 10px 0 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Contact Styles */
+#contact .contact-section {
+  background: var(--form-background-color);
+  padding: 50px;
+  border-radius: 8px;
+  margin: 40px auto;
+  width: 80%;
+  max-width: 800px;
+}
+
+#contact p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#contact .contact_form-name,
+#contact .contact_form-email,
+#contact .contact_form-subject,
+#contact .contact_form-message {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#contact .submit-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 17px;
+  transition: background-color 0.3s ease;
+}
+
+#contact .submit-button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.nav-active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.video-container {
+  background: var(--secondary-color);
+  /* margin-top: 80px; */
+  height: 62vh;
+  display: flex;
+  align-items: center;
+  gap: 200px;
+  padding: 50px 100px;
+  color: white;
+}
+
+.video-container p {
+  font-size: 25px;
+}
+
+.video-container iframe {
+  border: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+h2 {
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  margin-top: 80px;
+  text-align: center;
+  font-size: 3em;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  * {
+    margin: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  header {
+    width: 100%;
+  }
+
+  nav {
+    position: relative;
+  }
+
+  .nav-bar-custom {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--secondary-color);
+    flex-direction: column;
+    align-items: start;
+    z-index: 10;
+    gap: 0;
+    padding: 0;
+    margin-right: 50px;
+    width: 100%;
+  }
+
+  .nav-bar-custom.is-active {
+    display: flex;
+  }
+
+  .nav-bar-custom li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-bar-custom li a {
+    display: block;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .nav-bar-custom li,
+  .nav-bar-custom li a {
+    margin: 0;
+  }
+
+  .hamburger {
+    display: block;
+    height: 50px;
+    width: 70px;
+    margin-left: auto;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 5px;
+    width: 80%;
+    background-color: white;
+    border-radius: 25px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .hamburger span:nth-child(1) {
+    top: 25%;
+  }
+
+  .hamburger span:nth-child(2) {
+    top: 50%;
+  }
+
+  .hamburger span:nth-child(3) {
+    top: 75%;
+  }
+
+  .hamburger.is-active span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .hamburger.is-active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.is-active span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .nav-bar-custom.is-active {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 10px;
+    align-items: flex-end;
+  }
+
+  /* Home section layout adjustments */
+  #home .main-container {
+    height: 100vh;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #home .main-container p {
+    font-size: 2em;
+  }
+
+  #home #main_name,
+  #home #main-container-second-line {
+    font-size: 1.25em;
+  }
+
+  #home #main-container-second-line {
+    font-size: 2em;
+  }
+
+  /* About section layout adjustments */
+  #about .content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #about .main-container {
+    flex-direction: column;
+  }
+
+  #about picture {
+    height: 5px;
+    width: 100%;
+    top: 0;
+    margin-bottom: 400px;
+  }
+
+  #about .video-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 800px;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  /* Projects Section Styles */
+  #projects .project-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 100px;
+  }
+
+  #projects .project-item {
+    align-items: center;
+  }
+
+  #projects .project-item figcaption,
+  #projects .project-item p,
+  #projects .project-item a {
+    text-align: center;
+  }
+
+  /* Contact Section Styles */
+  #contact .contact-section {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  #contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #contact .submit-button {
+    align-self: center;
+    width: 50%;
+    margin-top: 20px;
+  }
+}
+
+/* Media Query for tablet sized screens - bigger than 768px but smaller than  1024px */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .nav-bar-custom {
+    gap: 50px;
+  }
+
+  .nav-bar-custom li a {
+    font-size: 20px;
+  }
+
+  .nav-bar-custom li a:hover,
+  .nav-bar-custom li a.active {
+    font-size: 20px;
+  }
+
+  .download-btn {
+    width: 200px;
+    font-size: 20px;
+    height: 50px;
+  }
+
+  .download-btn.btn-color {
+    width: 200px;
+    font-size: 20px;
+    height: 50px;
+  }
+
+  #dark-mode-toggle {
+    width: 60px;
+    height: 30px;
+    margin: 50px;
+  }
+
+  .checkbox + label::before {
+    font-size: 30px;
+  }
+
+  .checkbox + label::after {
+    font-size: 30px;
+  }
+
+  .slider {
+    width: 30px;
+    height: 30px;
+  }
+  /* Home section layout adjustments */
+
+  #home .main-container p {
+    font-size: 4em;
+  }
+
+  #home #main_name,
+  #home #main-container-second-line {
+    font-size: 1em;
+  }
+
+  #home #main-container-second-line {
+    font-size: 2em;
+  }
+
+  #about .content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #about .main-container {
+    flex-direction: column;
+  }
+
+  #about .about-me-paragraphs h3 {
+    text-align: start;
+  }
+
+  #about picture {
+    height: 5px;
+    width: 100%;
+    top: 0;
+    margin-bottom: 400px;
+    align-self: center;
+    justify-self: center;
+  }
+
+  #about .video-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 800px;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  /* Projects Section Styles */
+  #projects .project-container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 100px;
+  }
+
+  #projects .project-item p {
+    font-size: 1.25rem;
+  }
+
+  #projects figcaption {
+    font-size: 1.5rem;
+  }
+
+  #contact .contact-section {
+    padding: 60px;
+  }
+
+  #contact p {
+    font-size: 25px;
+  }
+
+  #contact .contact_form-name,
+  #contact .contact_form-email,
+  #contact .contact_form-subject,
+  #contact .contact_form-message {
+    padding: 15px;
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+
+  #contact .submit-button {
+    padding: 15px 30px;
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 3.5em;
+  }
+}
